@@ -1,0 +1,22 @@
+name: Tarea Integracion en Contenedor
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  python-job:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.9-slim
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Ejecutar acción dentro del contenedor
+        run: |
+          echo "Ejecutando desde el contenedor de Python"
+          python --version
+          python -c "print('Hola desde el contenedor que Angel configuró')"
